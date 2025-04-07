@@ -10,8 +10,8 @@ export declare class NdArray {
   get size(): number
   get ndim(): number
   get dtype(): string
-  toString(): string
   get(indices: Array<number>): number
   add(other: NdArray): NdArray
   addScalar(scalar: number): NdArray
+  chain(): NdArray
 }

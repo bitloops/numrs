@@ -1,41 +1,75 @@
 import numpy as np
 import time
 
-def run_benchmark(iterations=1000000):
+def run_benchmark(iterations=20):
+    print("\nRunning NumPy Benchmark with larger arrays and more complex operations")
+    print("================================================================")
+
+    # Create larger arrays for more meaningful benchmarks
+    size = 100000
+    arr1 = np.arange(size)
+    arr2 = np.arange(size) * 2
+
+    print(f"Created arrays with {size} elements each")
+
+    # Test array properties
+    print("\nArray properties:")
+    print("Array 1 shape:", arr1.shape)
+    print("Array 1 size:", arr1.size)
+    print("Array 1 ndim:", arr1.ndim)
+    print("Array 1 dtype:", arr1.dtype)
+
+    # Test computationally intensive operations
+    print("\nRunning computationally intensive operations...")
+
+    # Test 1: Vector addition (element-wise)
     start_time = time.time()
-
-    # Create arrays
-    arr1 = np.array([1, 2, 3], dtype=np.float64)
-    arr2 = np.array([4, 5, 6], dtype=np.float64)
-
+    result = None
     for _ in range(iterations):
-        # Array properties
-        shape = arr1.shape
-        size = arr1.size
-        ndim = arr1.ndim
-        dtype = arr1.dtype
-
-        # Element access
-        elem = arr1[1]
-
-        # Array operations
-        sum_array = arr1 + arr2
-        scalar_sum = arr1 + 10
-
+        result = arr1 + arr2
     end_time = time.time()
-    duration = end_time - start_time
+    add_duration = end_time - start_time
 
-    # Print results once
-    print(f"NumPy Results (first iteration):")
-    print(f"Array 1 shape: {arr1.shape}")
-    print(f"Array 1 size: {arr1.size}")
-    print(f"Array 1 ndim: {arr1.ndim}")
-    print(f"Array 1 dtype: {arr1.dtype}")
-    print(f"Element at index 1: {arr1[1]}")
-    print(f"Sum of arrays: {arr1 + arr2}")
-    print(f"Array + scalar: {arr1 + 10}")
-    print(f"\nBenchmark completed in {duration:.4f} seconds")
-    print(f"Average time per iteration: {(duration/iterations)*1000000:.2f} microseconds")
+    # Test 2: Scalar operations
+    start_time = time.time()
+    for _ in range(iterations):
+        result = arr1 + 10.5
+    end_time = time.time()
+    scalar_duration = end_time - start_time
+
+    # Test 3: Multiple operations (equivalent to method chaining)
+    start_time = time.time()
+    for _ in range(iterations):
+        result = arr1 + arr2 + 5.0 + arr1 + 2.5 + arr2
+    end_time = time.time()
+    multi_duration = end_time - start_time
+
+    # Test 4: Complex operations with multiple arrays
+    start_time = time.time()
+    for _ in range(iterations):
+        # Create a new array for each iteration to simulate more complex operations
+        temp_arr = np.arange(size) * 3
+        result = arr1 + arr2 + 5.0 + temp_arr + 2.5
+    end_time = time.time()
+    complex_duration = end_time - start_time
+
+    # Print benchmark results
+    print("\nBenchmark Results:")
+    print(f"Vector addition ({iterations} iterations): {add_duration:.4f} seconds")
+    print(f"Average time per addition: {(add_duration * 1000000 / iterations):.2f} microseconds")
+
+    print(f"\nScalar operations ({iterations} iterations): {scalar_duration:.4f} seconds")
+    print(f"Average time per scalar operation: {(scalar_duration * 1000000 / iterations):.2f} microseconds")
+
+    print(f"\nMultiple operations ({iterations} iterations): {multi_duration:.4f} seconds")
+    print(f"Average time per multiple operation: {(multi_duration * 1000000 / iterations):.2f} microseconds")
+
+    print(f"\nComplex operations ({iterations} iterations): {complex_duration:.4f} seconds")
+    print(f"Average time per complex operation: {(complex_duration * 1000000 / iterations):.2f} microseconds")
+
+    # Print sample results
+    print("\nSample results:")
+    print("First 5 elements of result:", result[0], result[1], result[2], result[3], result[4])
 
 if __name__ == "__main__":
     run_benchmark()
