@@ -7,12 +7,9 @@
   "cpu": [
     "x64"
   ],
-  "libc": [
-    "glibc"
-  ],
-  "main": "package-template.linux-x64-gnu.node",
+  "main": "numrs.linux-x64-gnu.node",
   "files": [
-    "package-template.linux-x64-gnu.node"
+    "numrs.linux-x64-gnu.node"
   ],
   "description": "Template project for writing node package with napi-rs",
   "keywords": [
@@ -31,5 +28,8 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "repository": "git@github.com:napi-rs/package-template.git"
+  "repository": "https://github.com/bitloops/numrs",
+  "libc": [
+    "glibc"
+  ]
 }

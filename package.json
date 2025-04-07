@@ -1,9 +1,9 @@
 {
-  "name": "@napi-rs/package-template",
-  "version": "1.0.0",
-  "description": "Template project for writing node package with napi-rs",
+  "name": "numrs",
+  "version": "0.1.0",
+  "description": "numpy-like API for TypeScript built on top of Rust",
   "main": "index.js",
-  "repository": "git@github.com:napi-rs/package-template.git",
+  "repository": "https://github.com/bitloops/numrs",
   "license": "MIT",
   "keywords": [
     "napi-rs",
@@ -18,7 +18,7 @@
     "index.js"
   ],
   "napi": {
-    "name": "package-template",
+    "name": "numrs",
     "triples": {
       "defaults": true,
       "additional": [
